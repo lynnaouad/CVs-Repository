@@ -1,0 +1,110 @@
+﻿@page
+@model CV_Project2022.Pages.SendCVModel
+@{
+    ViewData["Title"] = "Send CV";
+}
+
+<div class="container">
+
+    <h1 class="subtitle">Send CV</h1>
+
+    <form class="Sendform" method="post" enctype="multipart/form-data">
+        
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.FirstName"></label>
+                <input class="form-control" asp-for="@Model.Input.FirstName" />
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.LastName"></label>
+                <input class="form-control" asp-for="@Model.Input.LastName" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.Date"></label>
+                <input class="form-control" asp-for="@Model.Input.Date" />
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.Nationality"></label>
+                <select class="form-control dropdown" asp-for="@Model.Input.Nationality" asp-items="@Model.viewModel.nationality_list" >
+                    <option value="">**Not Selected**</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label> 
+            @foreach(var gender in Model.viewModel.gender_list){
+                <input class="gender" type="radio" asp-for="@Model.Input.Gender" value="@gender" />@gender
+            }
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Input.Skills"></label>
+            <ul class="checkboxes">
+                @for(int i=0; i < Model.viewModel.skills_list.Count; i++){
+                    <li>
+                       <input type="hidden" asp-for="@Model.Input.Skills[i].Value" />
+                       <input  class="checkbox" asp-for="Input.Skills[i].Selected" /> @Model.viewModel.skills_list[i].Text
+                    </li>
+                }
+            </ul>         
+        </div>
+        
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.Photo"></label>
+                <input class="form-control file" type="file" asp-for="@Model.Input.Photo" accept="image/*" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.Email"></label>
+                <input class="form-control" asp-for="@Model.Input.Email" />
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Input.ConfirmEmail"></label>
+                <input class="form-control" asp-for="@Model.Input.ConfirmEmail" />
+            </div>
+        </div>
+
+        <label>Verification</label> <br />
+
+        <p>Before you proceed please enter the summation.</p>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <input class="form-control" asp-for="@Model.Input.FirstNb" readonly /> 
+            </div>
+
+            +
+
+            <div class="form-group col-md-3">
+                <input class="form-control" asp-for="@Model.Input.SecondNb" readonly /> 
+            </div>
+
+            =
+
+            <div class="form-group col-md-3">
+                <input class="form-control" asp-for="@Model.Input.Summation" />
+            </div>
+
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger"></div> 
+        
+        <button type="submit" class="btn btn-primary">Send</button>
+
+    </form>
+
+    
+
+
+</div>

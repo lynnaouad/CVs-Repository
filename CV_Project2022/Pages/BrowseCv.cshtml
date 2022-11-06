@@ -1,0 +1,50 @@
+﻿@page
+@model CV_Project2022.Pages.BrowseCvModel
+@{
+    ViewData["Title"] = "All CVs";
+}
+
+<h1 class="subtitle"> @ViewData["Title"] </h1>
+
+<a asp-page="SendCV" class="btn btn-primary addbtn">Add new CV</a>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Grade</th>
+                    <th class="align-middle"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var c in Model.viewModel.CV_list)
+                {
+                    <tr>
+                        <td class="align-middle">@c.FirstName</td>
+                        <td class="align-middle">@c.LastName</td>
+                        <td class="align-middle">@c.Email</td>
+                        <td class="align-middle">@c.Gender</td>
+                        <td class="align-middle">@c.Grade</td>
+
+                        <td class="align-middle">
+                            <form class="actionBtns" method="post" class="align-middle">
+                                <a asp-page="/ViewCV" asp-route-id="@c.Id" class="btn btn-success">Details</a>
+                        
+                                <a asp-page="/EditCV" asp-route-id="@c.Id" class="btn btn-warning">Edit</a>
+                            
+                                <button type="submit" asp-page-handler="Delete" asp-route-id="@c.Id" class="btn btn-danger" id="deletebtn">Delete</button>
+
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

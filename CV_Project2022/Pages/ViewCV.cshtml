@@ -1,0 +1,77 @@
+﻿@page "{id}"
+@model CV_Project2022.Pages.ViewCVModel
+@{
+    ViewData["Title"] = "Summary CV";
+}
+
+<div class="container" align="center" >
+
+    
+    <div class="top">
+        <a asp-page="BrowseCv"><iconify-icon inline icon="akar-icons:arrow-back-thick" style="color: darkblue;" width="40" height="40"></iconify-icon></a> 
+        <button class="btn btn-primary" onclick="PrintDiv(CVSummary);">Generate PDF</button>
+    </div>
+
+    <div class="CVcard" id="CVSummary" >
+
+        <div class="personalInfo">
+            <img src="~/images/@Model.viewModel.CV.Photo.FileName" />
+            <h3 class="text-primary text-capitalize pdfbtn" id="NAME">@Model.viewModel.CV.FirstName @Model.viewModel.CV.LastName</h3>
+        </div>
+
+        <table class="table">
+            <tr>
+                <td class="font-weight-bold">Date of Birth:</td>
+                <td>@Model.viewModel.CV.Date</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Gender:</td>
+                <td>@Model.viewModel.CV.Gender</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Nationality:</td>
+                <td>@Model.viewModel.CV.Nationality</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Email:</td>
+                <td>@Model.viewModel.CV.Email</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Skills:</td>
+                <td>
+                    @if(!Model.viewModel.CV.Skills.Any()){
+                        <span class="skill" >** No selected skills **</span>
+                    }
+                    else
+                    {
+                        @foreach(var s in Model.viewModel.CV.Skills){
+                            <span class="skill" >@s.Text</span>
+                        } 
+                    }
+                               
+                </td>
+            </tr>
+        </table>
+
+        <div class="grade btn-primary">
+            Grade : @Model.viewModel.CV.Grade
+        </div>
+
+    </div>
+
+   
+</div>
+
+<script>
+    function PrintDiv(div) {
+        html2canvas((div), {
+            onrendered: function (canvas) {
+                var imageData = canvas.toDataURL("image/jpeg", 1.0);
+
+                var pdf = new jsPDF('l', 'mm', [297, 210]);
+                pdf.addImage(imageData, 'JPEG', 70, 5);
+                pdf.save("CV.pdf");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,133 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.WebsiteTitle {
+    font-family: 'Dancing Script', cursive;  
+}
+
+.logoImg {
+    object-fit: contain;
+}
+
+.HomeBG{
+    width:100%;
+    height:25em;
+    margin-top:1em;
+}
+
+.subtitle {
+    margin-bottom: .7em;
+    color:#1b6ec2;
+}
+
+.Sendform {
+    padding:.7em;
+    box-shadow: 5px 10px 18px #888888;
+    border-radius:10px;
+}
+
+.gender {
+    margin-left: 1em;
+    cursor:pointer;
+}
+
+.file {
+    cursor: pointer;
+}
+
+.checkboxes ul, .checkboxes li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.checkboxes li {
+    display: inline-block;
+    width: 30%;
+}
+
+.checkbox{
+    cursor:pointer;
+}
+
+label{
+    font-weight:bold;
+}
+
+
+/* SummaryPage */
+
+.CVcard {
+    padding: .7em;
+    box-shadow: 5px 10px 18px #888888;
+    border-radius: 10px;
+    width: 60%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background:#FFFFFF;
+}
+
+.personalInfo {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5em;
+}
+
+.personalInfo img {
+        width: 28%;
+        height: 9em;
+        object-fit:cover;
+        object-position:center;
+        border-radius:50%;
+        border:2px solid #eeeeee;      
+}
+
+.grade{
+    border-radius:2em;
+    width:30%;
+    padding:.7em;
+}
+
+.skill {
+    padding: .5em;
+    border-radius: 2em;
+    background-color: lavender;
+}
+
+.actionBtns{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.addbtn{
+    margin-bottom:1em;
+}
+
+.top{
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .CVcard {
+        width: 90%;
+    }
+    }
+
+
+
+
+
+
+
+
+
+
